@@ -19,18 +19,25 @@ async function adminFetch(path, options = {}) {
 
 export const adminApi = {
   // Bookings
-  getBookings: (params = {}) => {
-    const q = new URLSearchParams(params).toString();
-    return adminFetch(`/api/bookings${q ? '?' + q : ''}`);
-  },
+  getBookings:   (params = {}) => { const q = new URLSearchParams(params).toString(); return adminFetch(`/api/bookings${q ? '?' + q : ''}`); },
   getStats:      ()           => adminFetch('/api/bookings/stats'),
-  updateBooking: (id, body)   => adminFetch(`/api/bookings/${id}`, { method: 'PUT', body: JSON.stringify(body) }),
-  deleteBooking: (id)         => adminFetch(`/api/bookings/${id}`, { method: 'DELETE' }),
+  updateBooking: (id, body)   => adminFetch(`/api/bookings/${id}`,    { method: 'PUT',    body: JSON.stringify(body) }),
+  deleteBooking: (id)         => adminFetch(`/api/bookings/${id}`,    { method: 'DELETE' }),
 
   // Services
   getServices:   ()           => adminFetch('/api/services'),
-  updateService: (slug, body) => adminFetch(`/api/services/${slug}`, { method: 'PUT', body: JSON.stringify(body) }),
+  updateService: (slug, body) => adminFetch(`/api/services/${slug}`,  { method: 'PUT',    body: JSON.stringify(body) }),
+
+  // Case Studies
+  getCaseStudies:   ()        => adminFetch('/api/case-studies'),
+  createCaseStudy:  (body)    => adminFetch('/api/case-studies',       { method: 'POST',   body: JSON.stringify(body) }),
+  updateCaseStudy:  (id, body)=> adminFetch(`/api/case-studies/${id}`, { method: 'PUT',    body: JSON.stringify(body) }),
+  deleteCaseStudy:  (id)      => adminFetch(`/api/case-studies/${id}`, { method: 'DELETE' }),
+
+  // About
+  getAbout:      ()           => adminFetch('/api/about'),
+  updateAbout:   (body)       => adminFetch('/api/about',              { method: 'PUT',    body: JSON.stringify(body) }),
 
   // Users
-  getUsers: () => adminFetch('/api/auth/users'),
+  getUsers:      ()           => adminFetch('/api/auth/users'),
 };
