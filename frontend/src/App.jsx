@@ -4,12 +4,16 @@ import { Navbar }        from './components/Navbar.jsx';
 import { Hero }          from './components/Hero.jsx';
 import { Services }      from './components/Services.jsx';
 import { Transform }     from './components/Transform.jsx';
+import { Reviews }       from './components/Reviews.jsx';
 import { Booking }       from './components/Booking.jsx';
 import { CalendlyModal } from './components/CalendlyModal.jsx';
 import { Footer }        from './components/Footer.jsx';
 import AdminPage         from './pages/admin/AdminPage.jsx';
 import About             from './pages/About.jsx';
 import CaseStudies       from './pages/CaseStudies.jsx';
+import Blog              from './pages/Blog.jsx';
+import BlogPost          from './pages/BlogPost.jsx';
+import LeaveReview       from './pages/LeaveReview.jsx';
 
 function MainSite() {
   const [calendlyUrl, setCalendlyUrl] = useState(null);
@@ -22,12 +26,11 @@ function MainSite() {
         <Hero />
         <Services />
         <Transform />
+        <Reviews />
         <Booking onBook={(url) => setCalendlyUrl(url)} />
       </main>
       <Footer />
-      {calendlyUrl && (
-        <CalendlyModal url={calendlyUrl} onClose={() => setCalendlyUrl(null)} />
-      )}
+      {calendlyUrl && <CalendlyModal url={calendlyUrl} onClose={() => setCalendlyUrl(null)} />}
     </div>
   );
 }
@@ -46,10 +49,13 @@ function PageLayout({ children }) {
 export default function App() {
   return (
     <Routes>
-      <Route path="/admin/*"       element={<AdminPage />} />
-      <Route path="/about"         element={<PageLayout><About /></PageLayout>} />
-      <Route path="/case-studies"  element={<PageLayout><CaseStudies /></PageLayout>} />
-      <Route path="/*"             element={<MainSite />} />
+      <Route path="/admin/*"      element={<AdminPage />} />
+      <Route path="/leave-review" element={<LeaveReview />} />
+      <Route path="/about"        element={<PageLayout><About /></PageLayout>} />
+      <Route path="/case-studies" element={<PageLayout><CaseStudies /></PageLayout>} />
+      <Route path="/blog/:slug"   element={<PageLayout><BlogPost /></PageLayout>} />
+      <Route path="/blog"         element={<PageLayout><Blog /></PageLayout>} />
+      <Route path="/*"            element={<MainSite />} />
     </Routes>
   );
 }

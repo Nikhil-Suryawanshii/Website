@@ -4,12 +4,14 @@ import cors from 'cors';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 
-import connectDB from './config/db.js';
+import connectDB        from './config/db.js';
 import authRoutes       from './routes/auth.js';
 import bookingRoutes    from './routes/bookings.js';
 import serviceRoutes    from './routes/services.js';
 import caseStudyRoutes  from './routes/caseStudies.js';
 import aboutRoutes      from './routes/about.js';
+import blogRoutes       from './routes/blogs.js';
+import reviewRoutes     from './routes/reviews.js';
 
 connectDB();
 
@@ -44,6 +46,8 @@ app.use('/api/bookings',     bookingRoutes);
 app.use('/api/services',     serviceRoutes);
 app.use('/api/case-studies', caseStudyRoutes);
 app.use('/api/about',        aboutRoutes);
+app.use('/api/blogs',        blogRoutes);
+app.use('/api/reviews',      reviewRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found.` });

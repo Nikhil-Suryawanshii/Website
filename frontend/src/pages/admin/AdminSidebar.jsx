@@ -1,16 +1,22 @@
 import React from 'react';
-import { LayoutDashboard, Calendar, Layers, Users, LogOut, ExternalLink, ChevronRight, Briefcase, Info } from 'lucide-react';
+import {
+  LayoutDashboard, Calendar, Layers, Users, LogOut,
+  ExternalLink, ChevronRight, Briefcase, Info,
+  BookOpen, Star,
+} from 'lucide-react';
 
 const NAV = [
-  { key: 'dashboard',    label: 'Dashboard',    icon: LayoutDashboard },
-  { key: 'bookings',     label: 'Bookings',     icon: Calendar },
-  { key: 'services',     label: 'Services',     icon: Layers },
-  { key: 'caseStudies',  label: 'Case Studies', icon: Briefcase },
-  { key: 'about',        label: 'About Page',   icon: Info },
-  { key: 'users',        label: 'Users',        icon: Users },
+  { key: 'dashboard',   label: 'Dashboard',    icon: LayoutDashboard },
+  { key: 'bookings',    label: 'Bookings',     icon: Calendar },
+  { key: 'blog',        label: 'Blog Posts',   icon: BookOpen },
+  { key: 'reviews',     label: 'Reviews',      icon: Star },
+  { key: 'services',    label: 'Services',     icon: Layers },
+  { key: 'caseStudies', label: 'Case Studies', icon: Briefcase },
+  { key: 'about',       label: 'About Page',   icon: Info },
+  { key: 'users',       label: 'Users',        icon: Users },
 ];
 
-export default function AdminSidebar({ active, onNav, user, onLogout }) {
+export default function AdminSidebar({ active, onNav, user, onLogout, pendingReviews = 0 }) {
   return (
     <aside className="w-60 min-h-screen bg-[#08080f] border-r border-white/5 flex flex-col shrink-0">
       <div className="p-6 border-b border-white/5">
@@ -35,8 +41,13 @@ export default function AdminSidebar({ active, onNav, user, onLogout }) {
             }`}
           >
             <Icon className="w-4 h-4 shrink-0" />
-            {label}
-            {active === key && <ChevronRight className="w-3.5 h-3.5 ml-auto" />}
+            <span className="flex-1 text-left">{label}</span>
+            {key === 'reviews' && pendingReviews > 0 && (
+              <span className="w-5 h-5 rounded-full bg-yellow-500 text-black text-[10px] font-bold flex items-center justify-center">
+                {pendingReviews}
+              </span>
+            )}
+            {active === key && <ChevronRight className="w-3.5 h-3.5" />}
           </button>
         ))}
       </nav>

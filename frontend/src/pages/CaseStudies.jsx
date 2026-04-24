@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, TrendingUp } from 'lucide-react';
 
-const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const CATEGORIES = ['All', 'Web', 'Mobile', 'AI', 'Automation'];
 
