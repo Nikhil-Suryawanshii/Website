@@ -165,7 +165,7 @@ export default function Blog() {
       {/* Category Tabs — horizontal scroll on mobile */}
       <section className="px-4 sm:px-6 pb-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
